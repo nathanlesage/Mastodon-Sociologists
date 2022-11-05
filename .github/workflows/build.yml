@@ -32,19 +32,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-
       # --- --- --- FROM HERE ON BUILDING
       - name: Setup NodeJS 16
         uses: actions/setup-node@v1
         with:
           node-version: '16'
       - name: Run build script
-      # NOTE: We have to switch this out for the real build script once we have it
-        run: |
-          ./scripts/build.sh
+      # This builds the complete page into the dist directory
+        run: yarn build
 
-
-      # From here on only upload and deploy
+      # -- --- --- FROM HERE ON UPLOAD AND DEPLOY
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
